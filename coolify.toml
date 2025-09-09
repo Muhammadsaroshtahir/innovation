@@ -1,0 +1,13 @@
+# Coolify Deployment Configuration
+# This file tells Coolify how to build and run your Next.js app
+[build]
+# Install dependencies and build the app
+command = "npm install && npm run build"
+
+[deploy]
+# Start the Next.js app in production mode
+command = "npm run start"
+
+[env]
+# Add any environment variables here
+# EXAMPLE_ENV=your_value
