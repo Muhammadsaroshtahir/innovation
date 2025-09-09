@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  coolify:
+    image: coollabsio/coolify
+    container_name: coolify
+    environment:
+      DB_HOST: coolify-db
+      DB_PORT: 5432
+      DB_DATABASE: coolify
+      DB_USERNAME: coolify
+      DB_PASSWORD: coolify
+    ports:
+      - "3000:3000"
+    volumes:
+      - coolify-data:/app/data
+    depends_on:
+      - coolify-db
+      - coolify-redis
+
+  coolify-db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: coolify
+      POSTGRES_USER: coolify
+      POSTGRES_PASSWORD: coolify
+    volumes:
+      - coolify-db-data:/var/lib/postgresql/data
+
+  coolify-redis:
+    image: redis:7
+    volumes:
+      - coolify-redis-data:/data
+
+volumes:
+  coolify-data:
+  coolify-db-data:
+  coolify-redis-data:
